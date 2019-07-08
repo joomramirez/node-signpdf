@@ -1,6 +1,5 @@
 import forge from 'node-forge';
 import SignPdfError from './SignPdfError';
-import {removeTrailingNewLine} from './helpers';
 
 export {default as SignPdfError} from './SignPdfError';
 
@@ -36,7 +35,8 @@ export class SignPdf {
             );
         }
 
-        let pdf = removeTrailingNewLine(pdfBuffer);
+        // let pdf = removeTrailingNewLine(pdfBuffer);
+        let pdf = pdfBuffer;
 
         // Find the ByteRange placeholder.
         const byteRangePlaceholder = [

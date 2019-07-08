@@ -15,8 +15,6 @@ var _nodeForge = _interopRequireDefault(require("node-forge"));
 
 var _SignPdfError = _interopRequireDefault(require("./SignPdfError"));
 
-var _helpers = require("./helpers");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const DEFAULT_BYTE_RANGE_PLACEHOLDER = '**********';
@@ -41,9 +39,10 @@ class SignPdf {
 
     if (!(p12Buffer instanceof Buffer)) {
       throw new _SignPdfError.default('p12 certificate expected as Buffer.', _SignPdfError.default.TYPE_INPUT);
-    }
+    } // let pdf = removeTrailingNewLine(pdfBuffer);
 
-    let pdf = (0, _helpers.removeTrailingNewLine)(pdfBuffer); // Find the ByteRange placeholder.
+
+    let pdf = pdfBuffer; // Find the ByteRange placeholder.
 
     const byteRangePlaceholder = [0, `/${this.byteRangePlaceholder}`, `/${this.byteRangePlaceholder}`, `/${this.byteRangePlaceholder}`];
     const byteRangeString = `/ByteRange [${byteRangePlaceholder.join(' ')}]`;
